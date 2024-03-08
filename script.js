@@ -20,6 +20,8 @@ function populateLanguages() {
 
 populateLanguages();
 
+let transcript = "";
+
 function speechToText() {
   try {
     recognition = new SpeechRecognition();
@@ -33,7 +35,10 @@ function speechToText() {
       //detect when intrim results
       if (event.results[0].isFinal) {
         result.innerHTML += " " + speechResult;
-        result.querySelector("p").remove();
+        const pElement = result.querySelector("p");
+        if (pElement) {
+          pElement.remove();
+        }
       } else {
         //creative p with class interim if not already there
         if (!document.querySelector(".interim")) {
@@ -110,3 +115,52 @@ clearBtn.addEventListener("click", () => {
   result.innerHTML = "";
   downloadBtn.disabled = true;
 });
+const speechResult = document.getElementById('speech-result');
+
+const translationResult = document.getElementById('translation-result');
+const translateButton = document.querySelector('.translate');
+
+if (!translateButton) {
+  throw new Error('No button with class "translate" found in the document');
+}
+else{
+
+  
+translateButton.addEventListener('click', () => {
+  const textToTranslate = result.innerText;
+
+  const targetLanguage = document.getElementById('langage').value;
+
+  const apiUrl = 'https://api.deepl.com/v2/translate';
+
+  const apiKey = '61eecab7-d013-48e0-8055-70a66cd9c10d';
+
+  const params = new URLSearchParams({
+    'auth_key': apiKey,
+    'text': textToTranslate,
+    'target_lang': targetLanguage,
+    'source_lang': 'fr'
+  });
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: params,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const translatedText = data.translations[0].text;
+
+      translationResult.innerText = translatedText;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+})};
