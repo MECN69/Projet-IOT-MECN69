@@ -1,12 +1,21 @@
 # Projet-IOT-MECN69
-Projet IoT : Enregistreur vocal et transcription automatique pour les réunions
+Projet IoT : Enregistreur vocal et transcription automatique pour les réunions, agenda de gestion de rendez-vous et traducteur de texte.
 Introduction
 
-Ce projet vise à développer une application IoT qui sera connectée à un microphone et à un Raspberry Pi. L'objectif principal est d'enregistrer les voix lors des réunions et de fournir une transcription automatique de ces enregistrements.
-Pitch
+Notre projet est une application desktop/mobile de reconnaissance vocale conçue pour la prise de notes et la gestion des rendez-vous, intégrant également une fonctionnalité de traduction des mémos vocaux.
+Nous avons employé le Raspberry Pi comme un ordinateur, auquel nous avons connecté un microphone afin que notre application puisse opérer dessus.
 
-Notre application IoT permettra de faciliter la prise de notes et la gestion des réunions en offrant une solution d'enregistrement vocal et de transcription automatique. Fini les prises de notes fastidieuses, notre système permettra aux utilisateurs de se concentrer pleinement sur les discussions tout en garantissant la documentation précise et détaillée de chaque réunion.
-Stack
+
+Développeur front/back : Mickael Claire Noah Eddin
+
+
+Noah et Mickael ont collaboré sur le développement de la fonctionnalité de prise de notes et sur l'élaboration de l'interface utilisateur générale.
+
+Claire et Eddin se sont chargés de la conception de l'agenda et de l'implémentation du traducteur.
+
+
+L'application a été programmée en PHP et la fonctionnalité de reconnaissance vocale développée en JavaScript. Pour stocker les données utilisateur et les notes, nous avons utilisé une base de données MySQL.
+Pour la sécurité des données, le mot de passe est automatiquement haché lors du processus d'inscription.
 
     Raspberry Pi: Nous utiliserons un Raspberry Pi comme plateforme principale pour notre système IoT en raison de sa polyvalence et de sa capacité à gérer les enregistrements audio.
     Microphone: Un microphone de qualité sera connecté au Raspberry Pi pour capturer les voix lors des réunions.
